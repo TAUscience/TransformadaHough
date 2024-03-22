@@ -62,17 +62,23 @@ def encuentra_lineas_hough(imagen, n_lineas):
     
     #Para cada coordenada (rho,theta) calcular recorriendo x
     for i in range(n_lineas):
-        rho_max_k=rhos_max[i]
-        theta_max_k=thetas_max[i]
+        ind_rho_max_k=rhos_max[i]
+        ind_theta_max_k=thetas_max[i]
+
+        theta_max_k=grados_a_radianes(normalizar(ind_theta_max_k,0,179,-90,90))
+        rho_max_k=normalizar(ind_rho_max_k,0,(int(rho_sup)*2)-1,int(rho_inf),int(rho_sup))
+
+        pendiente=-(np.cos(theta_max_k)/np.sin(theta_max_k))
+        cruce_eje=rho_max_k/np.sin(theta_max_k)
 
         for x_k in range(x):
-            y_k=-(  grados_a_radianes(np.cos(normalizar(theta_max_k,0,179,-90,90))) / grados_a_radianes(np.sin(normalizar(theta_max_k,0,179,-90,90))) )*x_k + ( normalizar(rho_max_k,0,int(rho_sup)*2-1,int(rho_inf),int(rho_sup)) / grados_a_radianes(np.sin(normalizar(theta_max_k,0,179,-90,90))) )
+            y_k=(pendiente*x_k)+cruce_eje
             if y_k >= 0 and y_k < y:
-                img_con_lineas[x_k][int(y_k)][1]=255
+                img_con_lineas[x_k][round(y_k)][0]=0
+                img_con_lineas[x_k][round(y_k)][1]=255
+                img_con_lineas[x_k][round(y_k)][2]=0
 
     return acumulador, puntos, img_con_lineas
-
-
 
 
 
