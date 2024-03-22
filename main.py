@@ -11,7 +11,7 @@ carpeta_img="imagenes_KITTI"        # <<< Carpeta en que se encuentran las image
 mis_imagenes=prepro.obtener_imagenes(cantidad_img,carpeta_img)
 
 for imagen in mis_imagenes:
-    buscar_numero_lineas=2 #        <<< CAMBIAR PARA BUSCAR MÁS O MENOS LINEAS
+    buscar_numero_lineas=5 #        <<< CAMBIAR PARA BUSCAR MÁS O MENOS LINEAS
     plt.imshow(imagen,cmap='gray')
     plt.title("Imagen preprocesada con Canny")
     plt.show()

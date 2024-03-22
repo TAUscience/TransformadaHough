@@ -74,9 +74,9 @@ def encuentra_lineas_hough(imagen, n_lineas):
         for x_k in range(x):
             y_k=(pendiente*x_k)+cruce_eje
             if y_k >= 0 and y_k < y:
-                img_con_lineas[x_k][round(y_k)][0]=0
-                img_con_lineas[x_k][round(y_k)][1]=255
-                img_con_lineas[x_k][round(y_k)][2]=0
+                img_con_lineas[x_k][int(y_k //1)][0]=0
+                img_con_lineas[x_k][int(y_k //1)][1]=255
+                img_con_lineas[x_k][int(y_k //1)][2]=0
 
     return acumulador, puntos, img_con_lineas
 
